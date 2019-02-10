@@ -1,0 +1,29 @@
+select distinct customer.CUS_CODE from customer
+JOIN invoice on customer.CUS_CODE = invoice.CUS_CODE
+where customer.CUS_AREACODE like '615';
+
+
+select distinct vendor.V_NAME from vendor
+JOIN product on vendor.V_CODE = product.V_CODE;
+
+
+select distinct customer.CUS_FNAME, customer.CUS_LNAME
+from customer
+join invoice on customer.CUS_CODE = invoice.CUS_CODE
+join line on invoice.INV_NUMBER = line.INV_NUMBER
+join product on line.P_CODE = product.P_CODE
+where product.P_CODE like '23109-HB';
+
+
+select distinct customer.CUS_FNAME, customer.CUS_LNAME
+from customer
+join invoice on customer.CUS_CODE = invoice.CUS_CODE
+join line on invoice.INV_NUMBER = line.INV_NUMBER
+join product on line.P_CODE = product.P_CODE
+where product.P_DESCRIPT like '%saw blade' or product.P_DESCRIPT like '%hammer%' or 
+product.P_DESCRIPT like '%saw%';
+
+
+select product.P_DESCRIPT, product.P_CODE from product
+join line on product.P_CODE = line.P_CODE
+having count(*)>1;
